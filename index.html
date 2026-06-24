@@ -1032,7 +1032,7 @@
       let html = '';
 
       PROG_ORDER.forEach(prog => {
-        const kumpulan = filteredData.filter(r => r.program === prog);
+        const kumpulan = filteredData.filter(r => r.program === prog).sort((a,b) => (a._mula||0) - (b._mula||0));
         if (!kumpulan.length) return;
 
         const meta = PROG_META[prog] || { nama: prog, cls:'prog-umum', rowCls:'group-umum', icon:'📋' };
@@ -1164,7 +1164,7 @@
       rows = `<tr class="empty-row"><td colspan="8">Tiada tugasan ditemui.</td></tr>`;
     } else {
       PROG_ORDER.forEach(prog => {
-        const kumpulan = filteredData.filter(r => r.program === prog);
+        const kumpulan = filteredData.filter(r => r.program === prog).sort((a,b) => (a._mula||0) - (b._mula||0));
         if (!kumpulan.length) return;
         const meta = PROG_META[prog] || { nama: prog, cls:'prog-umum', rowCls:'group-umum', icon:'📋' };
         const selesai = kumpulan.filter(r => r.status === 'Selesai').length;
